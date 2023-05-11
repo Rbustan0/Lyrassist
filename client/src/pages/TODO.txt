@@ -1,0 +1,2 @@
+* Modify Home and Profile as needed,
+* Potentially add a lyrics page that adds a list of lyrics component and an entry point for the user to interact with the AI. 

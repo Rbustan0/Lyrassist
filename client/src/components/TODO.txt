@@ -1,0 +1,3 @@
+* Remove Profile List
+* Change SkillForm to LyricInput
+* Change SkillsList to LyricList
