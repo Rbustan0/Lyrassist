@@ -13,12 +13,12 @@ const resolvers = {
     profile: async (parent, { profileId }) => {
       return Profile.findOne({ _id: profileId }).populate('lyrics');
     },
-    me: async (parent, args, context) => {
-      if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('thoughts');
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
+    // me: async (parent, args, context) => {
+    //   if (context.user) {
+    //     return User.findOne({ _id: context.user._id }).populate('thoughts');
+    //   }
+    //   throw new AuthenticationError('You need to be logged in!');
+    // },
   },
 
   Mutation: {
@@ -46,44 +46,44 @@ const resolvers = {
     },
 
     // TODO: CHANGE TO LYRICS?
-    addThought: async (parent, { thoughtText }, context) => {
-      // change to profile
-      if (context.user) { 
-        const thought = await Thought.create({
-          thoughtText,
-          thoughtAuthor: context.user.username,
-        });
+    // addThought: async (parent, { thoughtText }, context) => {
+    //   // change to profile
+    //   if (context.user) { 
+    //     const thought = await Thought.create({
+    //       thoughtText,
+    //       thoughtAuthor: context.user.username,
+    //     });
 
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { thoughts: thought._id } }
-        );
+    //     await User.findOneAndUpdate(
+    //       { _id: context.user._id },
+    //       { $addToSet: { thoughts: thought._id } }
+    //     );
 
-        return thought;
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
+    //     return thought;
+    //   }
+    //   throw new AuthenticationError('You need to be logged in!');
+    // },
     removeProfile: async (parent, { profileId }) => {
       return Profile.findOneAndDelete({ _id: profileId });
     },
     // TODO: CHANGE TO LYRICS?
     // change to profile
-    removeThought: async (parent, { thoughtId }, context) => {
-      if (context.user) {
-        const thought = await Thought.findOneAndDelete({
-          _id: thoughtId,
-          thoughtAuthor: context.user.username,
-        });
+    // removeThought: async (parent, { thoughtId }, context) => {
+    //   if (context.user) {
+    //     const thought = await Thought.findOneAndDelete({
+    //       _id: thoughtId,
+    //       thoughtAuthor: context.user.username,
+    //     });
 
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { thoughts: thought._id } }
-        );
+    //     await User.findOneAndUpdate(
+    //       { _id: context.user._id },
+    //       { $pull: { thoughts: thought._id } }
+    //     );
 
-        return thought;
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
+    //     return thought;
+    //   }
+    //   throw new AuthenticationError('You need to be logged in!');
+    // },
   },
 };
 

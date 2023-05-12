@@ -48,6 +48,6 @@ profileSchema.methods.isCorrectPassword = async function (password) {
 };
 
 const Profile = model('Profile', profileSchema);
-c
+
 
 module.exports = Profile;

@@ -28,6 +28,5 @@ const lyricSchema = new Schema({
 });
 
 const Lyric = model('Lyric', lyricSchema);
-c
 
 module.exports = Lyric;
