@@ -25,17 +25,23 @@ const resolvers = {
   },
 
   Mutation: {
-    addLyric: async (parent, args) => {
+    addLyric: async (parent, args, context) => {
+      if(context.profile){
       const lyric = await Lyric.create({
-        lyric: args.lyric,
+        lyricText: args.lyricText,
         verse: args.verse,
         bridge: args.bridge,
         chorus: args.chorus,
         preChorus: args.preChorus,
         prompt: args.prompt,
-      });
+      })};
+
+      await Profile.findOneAndUpdate({_id: context.profile._id}, 
+        { $addToSet: {lyrics: lyric._id }})
+
       return lyric;
-    }
+    },
+   
 
     addProfile: async (parent, { name, email, password }) => {
       const profile = await Profile.create({ name, email, password });
