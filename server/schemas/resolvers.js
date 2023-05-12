@@ -7,11 +7,17 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
   Query: {
     profiles: async () => {
-      return Profile.find();
+      return User.find().populate('lyrics');
     },
 
     profile: async (parent, { profileId }) => {
-      return Profile.findOne({ _id: profileId });
+      return Profile.findOne({ _id: profileId }).populate('lyrics');
+    },
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id }).populate('thoughts');
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
   },
 
@@ -40,28 +46,43 @@ const resolvers = {
     },
 
     // TODO: CHANGE TO LYRICS?
-    addSkill: async (parent, { profileId, skill }) => {
-      return Profile.findOneAndUpdate(
-        { _id: profileId },
-        {
-          $addToSet: { skills: skill },
-        },
-        {
-          new: true,
-          runValidators: true,
-        }
-      );
+    addThought: async (parent, { thoughtText }, context) => {
+      // change to profile
+      if (context.user) { 
+        const thought = await Thought.create({
+          thoughtText,
+          thoughtAuthor: context.user.username,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { thoughts: thought._id } }
+        );
+
+        return thought;
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
     removeProfile: async (parent, { profileId }) => {
       return Profile.findOneAndDelete({ _id: profileId });
     },
     // TODO: CHANGE TO LYRICS?
-    removeSkill: async (parent, { profileId, skill }) => {
-      return Profile.findOneAndUpdate(
-        { _id: profileId },
-        { $pull: { skills: skill } },
-        { new: true }
-      );
+    // change to profile
+    removeThought: async (parent, { thoughtId }, context) => {
+      if (context.user) {
+        const thought = await Thought.findOneAndDelete({
+          _id: thoughtId,
+          thoughtAuthor: context.user.username,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { thoughts: thought._id } }
+        );
+
+        return thought;
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
   },
 };
