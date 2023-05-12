@@ -25,17 +25,17 @@ const resolvers = {
   },
 
   Mutation: {
-    addLyric: async (parent, args) => {
-      const lyric = await Lyric.create({
-        lyric: args.lyric,
-        verse: args.verse,
-        bridge: args.bridge,
-        chorus: args.chorus,
-        preChorus: args.preChorus,
-        prompt: args.prompt,
-      });
-      return lyric;
-    }
+    // addLyric: async (parent, args) => {
+    //   const lyric = await Lyric.create({
+    //     lyric: args.lyric,
+    //     verse: args.verse,
+    //     bridge: args.bridge,
+    //     chorus: args.chorus,
+    //     preChorus: args.preChorus,
+    //     prompt: args.prompt,
+    //   });
+    //   return lyric;
+    // },
 
     addProfile: async (parent, { name, email, password }) => {
       const profile = await Profile.create({ name, email, password });
@@ -78,9 +78,13 @@ const resolvers = {
     //   }
     //   throw new AuthenticationError('You need to be logged in!');
     // },
-    removeProfile: async (parent, { profileId }) => {
-      return Profile.findOneAndDelete({ _id: profileId });
-    },
+
+    // ! TODO: add mutatuon for removeProile
+    // removeProfile: async (parent, { profileId }) => {
+    //   return Profile.findOneAndDelete({ _id: profileId });
+    // },
+
+
     // TODO: CHANGE TO LYRICS?
     // change to profile
     // removeThought: async (parent, { thoughtId }, context) => {
