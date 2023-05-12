@@ -1,5 +1,4 @@
-// TODO: Potentially add lyrics Schema
-
 const Profile = require('./Profile');
+const Lyric = require ('./Lyric')
 
-module.exports = { Profile };
+module.exports = { Profile, Lyric };

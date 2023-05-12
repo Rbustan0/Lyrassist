@@ -29,6 +29,7 @@ const profileSchema = new Schema({
 });
 
 
+
 // !BOILERPLATE
 
 // set up pre-save middleware to create password
@@ -47,5 +48,6 @@ profileSchema.methods.isCorrectPassword = async function (password) {
 };
 
 const Profile = model('Profile', profileSchema);
+c
 
 module.exports = Profile;
