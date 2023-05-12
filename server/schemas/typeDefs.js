@@ -25,11 +25,11 @@ const typeDefs = gql`
 
     #TODO: CHANGE ADDSKILL AND REMOVESKILL
     
-    addSkill(profileId: ID!, skill: String!): Profile
+    #addSkill(profileId: ID!, skill: String!): Profile
 
     removeProfile(profileId: ID!): Profile
 
-    removeSkill(profileId: ID!, skill: String!): Profile
+    #removeSkill(profileId: ID!, skill: String!): Profile
   }
 `;
 
