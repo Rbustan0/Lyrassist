@@ -25,6 +25,7 @@ const resolvers = {
   },
 
   Mutation: {
+
     addLyric: async (parent, args, context) => {
       if(context.profile){
       const lyric = await Lyric.create({
@@ -84,9 +85,13 @@ const resolvers = {
     //   }
     //   throw new AuthenticationError('You need to be logged in!');
     // },
-    removeProfile: async (parent, { profileId }) => {
-      return Profile.findOneAndDelete({ _id: profileId });
-    },
+
+    // ! TODO: add mutatuon for removeProile
+    // removeProfile: async (parent, { profileId }) => {
+    //   return Profile.findOneAndDelete({ _id: profileId });
+    // },
+
+
     // TODO: CHANGE TO LYRICS?
     // change to profile
     // removeThought: async (parent, { thoughtId }, context) => {
