@@ -1,27 +1,42 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { Profile } = require('../models');
+const { Profile, Lyric } = require('../models');
 const { signToken } = require('../utils/auth');
 
 
 
 const resolvers = {
   Query: {
-    profiles: async () => {
-      return User.find().populate('lyrics');
-    },
-
-    profile: async (parent, { profileId }) => {
-      return Profile.findOne({ _id: profileId }).populate('lyrics');
-    },
-    // me: async (parent, args, context) => {
-    //   if (context.user) {
-    //     return User.findOne({ _id: context.user._id }).populate('thoughts');
-    //   }
-    //   throw new AuthenticationError('You need to be logged in!');
+    // profiles: async () => {
+    //   return User.find().populate('lyrics');
     // },
+
+    // profile: async (parent, { profileId }) => {
+    //   return Profile.findOne({ _id: profileId }).populate('lyrics');
+    // },
+    me: async (parent, args, context) => {
+      if (context.profile) {
+        return Profile.findOne({ _id: context.profile._id }).populate('lyrics');
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    lyric: async (parent, args) => {
+      return Lyric.findOne({_id: lyric.Id})
+    },
   },
 
   Mutation: {
+    addLyric: async (parent, args) => {
+      const lyric = await Lyric.create({
+        lyric: args.lyric,
+        verse: args.verse,
+        bridge: args.bridge,
+        chorus: args.chorus,
+        preChorus: args.preChorus,
+        prompt: args.prompt,
+      });
+      return lyric;
+    }
+
     addProfile: async (parent, { name, email, password }) => {
       const profile = await Profile.create({ name, email, password });
       const token = signToken(profile);
