@@ -22,8 +22,8 @@ const profileSchema = new Schema({
   // ? Change this into a subdoc or a different Schema 
   lyrics: [
     {
-      type: String,
-      trim: true,
+      type: Schema.Types.ObjectId,
+      ref: 'Lyric',
     },
   ],
 });
