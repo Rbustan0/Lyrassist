@@ -6,7 +6,9 @@ const typeDefs = gql`
     name: String
     email: String
     password: String
-    lyric: [Lyric]!
+
+    lyrics: [Lyric]!
+
   }
 
   type Auth {
@@ -16,7 +18,7 @@ const typeDefs = gql`
 
   type Lyric {
     _id: ID
-    lyrics: String
+    lyricText: String
     verse: Boolean
     bridge: Boolean
     chorus: Boolean
@@ -34,7 +36,9 @@ const typeDefs = gql`
   type Mutation {
     addProfile(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    #addLyric
+
+    addLyric(lyricText: String!, verse: Boolean, bridge: Boolean, chorus: Boolean, prompt: String): Lyric
+
 
     #TODO: CHANGE ADDSKILL AND REMOVESKILL
     
