@@ -21,5 +21,18 @@ export const QUERY_SINGLE_PROFILE = gql`
   }
 `;
 
+export const QUERY_SINGLE_LYRIC = gql`
+  query singleLyric($lyricId: ID!) {
+    lyric(lyricId: $lyricId) {
+      _id
+      verse
+      bridge
+      chorus
+      preChorus
+      prompt
+    }
+  }
+`
+
 // Query Lyrics and single lyric
 

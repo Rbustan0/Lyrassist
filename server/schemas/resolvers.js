@@ -19,15 +19,16 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    lyric: async (parent, args) => {
-      return Lyric.findOne({_id: lyric.Id})
+    lyric: async (parent, { lyricId }) => {
+      return Lyric.findOne({_id: lyricId})
     },
   },
 
   Mutation: {
 
     addLyric: async (parent, args, context) => {
-      if(context.profile){
+      let {_id} = context.profile
+      if(_id){
       const lyric = await Lyric.create({
         lyricText: args.lyricText,
         verse: args.verse,
@@ -35,12 +36,15 @@ const resolvers = {
         chorus: args.chorus,
         preChorus: args.preChorus,
         prompt: args.prompt,
-      })};
+      })
 
-      await Profile.findOneAndUpdate({_id: context.profile._id}, 
+      await Profile.findOneAndUpdate(
+        {_id: _id}, 
         { $addToSet: {lyrics: lyric._id }})
 
       return lyric;
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
    
 

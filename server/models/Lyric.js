@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 const lyricSchema = new Schema({
-  lyrics: {
+  lyricText: {
     type: String,
     required: true,
   },
