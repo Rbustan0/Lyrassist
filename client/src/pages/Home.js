@@ -1,13 +1,12 @@
 import React from 'react';
-import { useQuery } from '@apollo/client';
+import { useMutation } from '@apollo/client';
+import { GEN_LYRIC } from '../utils/mutations';
 
-import ProfileList from '../components/ProfileList';
-
-import { QUERY_PROFILES } from '../utils/queries';
+import LyricForm from '../components/ProfileList';
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_PROFILES);
-  const profiles = data?.profiles || [];
+  const { loading, data } = useMutation(GEN_LYRIC);
+  const lyric = data?.lyric || [];
 
   return (
     <main>
@@ -16,9 +15,9 @@ const Home = () => {
           {loading ? (
             <div>Loading...</div>
           ) : (
-            <ProfileList
-              profiles={profiles}
-              title="Here's the current roster of friends..."
+            <LyricForm
+              lyric={lyric}
+              title="Make a Song!"
             />
           )}
         </div>

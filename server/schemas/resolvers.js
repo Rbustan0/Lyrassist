@@ -2,6 +2,10 @@ const { AuthenticationError } = require('apollo-server-express');
 const { Profile, Lyric } = require('../models');
 const { signToken } = require('../utils/auth');
 
+// import fetch from 'node-fetch';
+
+const fetch = require('node-fetch');
+
 
 
 const resolvers = {
@@ -31,7 +35,7 @@ const resolvers = {
       if(_id){
       const lyric = await Lyric.create({
         lyricText: args.lyricText,
-        verse: args.verse,
+        verse: verse,
         bridge: args.bridge,
         chorus: args.chorus,
         preChorus: args.preChorus,
@@ -71,50 +75,120 @@ const resolvers = {
       return { token, profile };
     },
 
-    // TODO: CHANGE TO LYRICS?
-    // addThought: async (parent, { thoughtText }, context) => {
-    //   // change to profile
-    //   if (context.user) { 
-    //     const thought = await Thought.create({
-    //       thoughtText,
-    //       thoughtAuthor: context.user.username,
-    //     });
+   
+    genLyric: async (parent, { verse, bridge, chorus, preChorus, prompt, genre }, context) => {
+      if (prompt) {
+        // Construct the input text for the OpenAI API based on the provided sections
+        let inputText = '';
+        let elements = [];
+        let newLyric = '';
 
-    //     await User.findOneAndUpdate(
-    //       { _id: context.user._id },
-    //       { $addToSet: { thoughts: thought._id } }
-    //     );
+        if (verse) {
+          elements.push('verse');
+        }
 
-    //     return thought;
-    //   }
-    //   throw new AuthenticationError('You need to be logged in!');
-    // },
+        if (preChorus) {
+          elements.push('preChorus');
+        }
 
-    // ! TODO: add mutatuon for removeProile
-    // removeProfile: async (parent, { profileId }) => {
-    //   return Profile.findOneAndDelete({ _id: profileId });
-    // },
+        if (chorus) {
+          elements.push('chorus');
+        }
+
+        if (bridge) {
+          elements.push('bridge');
+        }
+
+        const elementsString = elements.join('-');
+   
 
 
-    // TODO: CHANGE TO LYRICS?
-    // change to profile
-    // removeThought: async (parent, { thoughtId }, context) => {
-    //   if (context.user) {
-    //     const thought = await Thought.findOneAndDelete({
-    //       _id: thoughtId,
-    //       thoughtAuthor: context.user.username,
-    //     });
+        inputText = `prompt: Topic: ${prompt}\n Genre: ${genre}\n Song Structure Elements: ${elementsString}\nLyrics: `;
+      
 
-    //     await User.findOneAndUpdate(
-    //       { _id: context.user._id },
-    //       { $pull: { thoughts: thought._id } }
-    //     );
+      // Make a request to the OpenAI API using node-fetch
+        const response = await fetch('https://api.openai.com/v1/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            "Authorization": "Bearer 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",
+            // Include any necessary headers for authentication or other requirements
+          },
+          body: JSON.stringify({
+            model: 'text-davinci-003',
+            prompt: inputText, // THIS IS WHERE PROMPT WILL GO
+            max_tokens: 100,
+            temperature: .6, })
+        })
+        const responseData = await response.json();
 
-    //     return thought;
-    //   }
-    //   throw new AuthenticationError('You need to be logged in!');
-    // },
+        console.log(responseData)
+
+        newLyric = responseData.generated_lyrics;
+        // Process the response and extract the generated lyrics
+        let {_id} = context.profile
+        if(_id){
+          const lyric = await Lyric.create({
+            lyricText: newLyric,
+            verse: verse,
+            bridge: bridge,
+            chorus: chorus,
+            preChorus: preChorus,
+            prompt: prompt,
+            genre: genre,
+          })
+
+          await Profile.findOneAndUpdate(
+            {_id: _id}, 
+            { $addToSet: {lyrics: lyric._id }})
+
+          return lyric;
+          }
+        throw new AuthenticationError('You need to be logged in!');
+      }
+      // Return the generated lyrics as the result
+
+      // Return an appropriate value or error message if no prompt is provided
+      throw new Error('A prompt is required to generate lyrics.');
+    }
   },
 };
 
 module.exports = resolvers;
+
+
+  // Make a request to the OpenAI API using your API utility function or Axios
+        // const response = await fetchFromOpenAI('lyric-generation', {
+        //   method: 'POST',
+        //   headers: {
+        //     // Include any necessary headers for authentication or other requirements
+        //   },
+        //   body: JSON.stringify({ input: inputText })
+        // });
+
+        // // Process the response and extract the generated lyrics
+        // const { lyrics } = await response.json();
+
+        // // Return the generated lyrics as the result
+        // return lyrics;
+        // Propmise then/catch block
+        // Make request
+        // fetch('https://jsonplaceholder.typicode.com/posts/1', {
+        //   method: 'POST',
+        //   body: JSON.stringify({
+        //     id: 1,
+        //     title: 'fun',
+        //     body: 'bar',
+        //     userId: 1,
+        //   }),
+        //   headers: {
+        //     'Content-type': 'application/json; charset=UTF-8',
+        //   },
+        // })
+          // Parse JSON data
+          // .then((response) => response.json())
+
+          // Showing response
+          // .then((json) => console.log(json))
+          // .catch(err => console.log(err))
+

@@ -12,14 +12,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.0.0",
-    "jsonwebtoken": "^8.5.1",
     "apollo-server-express": "^3.6.2",
+    "bcrypt": "^5.0.0",
     "express": "^4.17.2",
     "graphql": "^16.3.0",
-    "mongoose": "^6.1.8"
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.1.8",
+    "node-fetch": "^2.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.21.8",
+    "@babel/plugin-syntax-import-meta": "^7.10.4",
+    "@babel/preset-env": "^7.21.5",
     "nodemon": "^2.0.3"
   }
 }
