@@ -81,19 +81,18 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
 
-    removeThought: async (parent, { lyricId }, context) => {
-        if (context.user) {
+    removeLyric: async (parent, { lyricId }, context) => {
+        if (context.profile) {
           const thought = await Lyric.findOneAndDelete({
-            _id: thoughtId,
-            thoughtAuthor: context.user.username,
+            _id: lyricId,
           });
 
           await User.findOneAndUpdate(
-            { _id: context.user._id },
-            { $pull: { thoughts: thought._id } }
+            { _id: context.profile._id },
+            { $pull: { lyrics: lyric._id } }
           );
 
-          return thought;
+          return lyric;
         }
         throw new AuthenticationError('You need to be logged in!');
       },
