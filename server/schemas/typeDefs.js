@@ -41,6 +41,8 @@ const typeDefs = gql`
     addLyric(lyricText: String!, verse: Boolean, bridge: Boolean, chorus: Boolean, prompt: String, genre: String): Lyric
 
     genLyric(verse: Boolean, bridge: Boolean, chorus: Boolean, preChorus: Boolean, prompt: String!, genre: String): Lyric
+    editLyric(_id: ID!, lyricText: String!, verse: Boolean, bridge: Boolean, chorus: Boolean, prompt: String): Lyric
+    removeLyric(lyricId: ID!) : Lyric
   }
 `;
 

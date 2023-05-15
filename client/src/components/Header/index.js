@@ -13,11 +13,11 @@ const Header = () => {
       <div className="container flex-column justify-space-between-lg justify-center align-center text-center">
         <Link className="text-dark" to="/">
           <h1 className="m-0" style={{ fontSize: '3rem' }}>
-            Tech Friends
+            Lyrassist
           </h1>
         </Link>
         <p className="m-0" style={{ fontSize: '1.75rem', fontWeight: '700' }}>
-          Meet your new programming pals.
+          Write lyrics based on what you're thinking.
         </p>
         <div>
           {Auth.loggedIn() ? (
@@ -36,8 +36,14 @@ const Header = () => {
           )}
         </div>
       </div>
+    <h1>
+    <button className="btn btn-lg btn-light m-2">
+              Submit
+            </button>
+    </h1>
     </header>
-  );
+      
+      );
 };
 
 export default Header;
