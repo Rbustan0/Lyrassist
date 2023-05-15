@@ -1,3 +1,4 @@
+
 // ?  This is the API.js in the client side utils
 
 // Axios is a popular NPM package used for preforming API requests
@@ -44,3 +45,4 @@ const SearchResultContainer = () => {
 };
 
 export default SearchResultContainer;
+

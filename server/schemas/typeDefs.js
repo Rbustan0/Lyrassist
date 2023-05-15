@@ -24,6 +24,7 @@ const typeDefs = gql`
     chorus: Boolean
     preChorus: Boolean
     prompt: String
+    genre: String
   }
 
   type Query {
@@ -37,18 +38,11 @@ const typeDefs = gql`
     addProfile(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
 
-    addLyric(lyricText: String!, verse: Boolean, bridge: Boolean, chorus: Boolean, prompt: String): Lyric
+    addLyric(lyricText: String!, verse: Boolean, bridge: Boolean, chorus: Boolean, prompt: String, genre: String): Lyric
 
+    genLyric(verse: Boolean, bridge: Boolean, chorus: Boolean, preChorus: Boolean, prompt: String!, genre: String): Lyric
     editLyric(_id: ID!, lyricText: String!, verse: Boolean, bridge: Boolean, chorus: Boolean, prompt: String): Lyric
     removeLyric(lyricId: ID!) : Lyric
-
-    #TODO: CHANGE ADDSKILL AND REMOVESKILL
-    
-    #addSkill(profileId: ID!, skill: String!): Profile
-
-    #removeProfile(profileId: ID!): Profile
-
-    #removeSkill(profileId: ID!, skill: String!): Profile
   }
 `;
 

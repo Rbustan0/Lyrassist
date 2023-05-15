@@ -24,6 +24,9 @@ const lyricSchema = new Schema({
   prompt: {
     type: String,
     required: true,
+  },
+  genre: {
+    type: String
   }
 });
 
