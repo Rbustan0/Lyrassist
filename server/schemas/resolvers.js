@@ -47,6 +47,40 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
    
+    editLyric: async (parent, args, context) => {
+      const { _id } = args;
+
+      if (context.profile) {
+        const existingLyric = await Lyric.findById(_id);
+
+        if (!existingLyric) {
+          throw new Error('Lyric not found');
+        }
+
+        const updatedLyric = await Lyric.findByIdAndUpdate(
+          _id,
+          {
+            lyricText: args.lyricText,
+            verse: args.verse,
+            bridge: args.bridge,
+            chorus: args.chorus,
+            preChorus: args.preChorus,
+            prompt: args.prompt,
+          },
+          { new: true }
+        );
+
+        // await Profile.findOneAndUpdate(
+        //   { _id: _id },
+        //   { $addToSet: { lyrics: updatedLyric._id } }
+        // );
+
+        return updatedLyric;
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
+    },
+
 
     addProfile: async (parent, { name, email, password }) => {
       const profile = await Profile.create({ name, email, password });

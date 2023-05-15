@@ -11,8 +11,6 @@ const search = (query) =>
 export default search;
 
 
-
-
 // ? this goes into the components react
 
 import { useState, useEffect } from 'react';
