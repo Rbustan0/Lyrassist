@@ -8,11 +8,16 @@ const Header = () => {
     event.preventDefault();
     Auth.logout();
   };
+
+  const styleboi = {
+    backgroundImage: 'linear-gradient(to right, #4287f5, #ff69b4)'
+  }
+
   return (
     <header className="bg-info text-dark mb-4 py-3 display-flex align-center">
       <div className="container flex-column justify-space-between-lg justify-center align-center text-center">
-        <Link className="text-dark" to="/">
-          <h1 className="m-0" style={{ fontSize: '3rem' }}>
+        <Link className="text-dark" to="/" >
+          <h1 className="m-0" style={{ fontSize: '3rem'}}>
             Lyrassist
           </h1>
         </Link>
@@ -21,9 +26,14 @@ const Header = () => {
         </p>
         <div>
           {Auth.loggedIn() ? (
-            <button className="btn btn-lg btn-light m-2" onClick={logout}>
-              Logout
-            </button>
+            <>
+              <Link to={`/profile/${Auth.getProfile().data._id}`} className="btn btn-lg btn-light m-2" >
+                Profile
+              </Link>
+              <button className="btn btn-lg btn-light m-2" onClick={logout}>
+                Logout
+              </button>
+            </>
           ) : (
             <>
               <Link className="btn btn-lg btn-primary m-2" to="/login">
@@ -36,14 +46,8 @@ const Header = () => {
           )}
         </div>
       </div>
-    <h1>
-    <button className="btn btn-lg btn-light m-2">
-              Submit
-            </button>
-    </h1>
     </header>
-      
-      );
+  );
 };
 
 export default Header;

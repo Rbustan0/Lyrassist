@@ -12,8 +12,7 @@
   {
     "name": "roye",
     "email": "royebustan@gmail.com",
-    "password": "password03",
-    "skills": ["NodeJS", "MySQL", "MongoDB", "React", "CSS-in-JS"]
+    "password": "password03"
   },
   {
     "name": "josh",

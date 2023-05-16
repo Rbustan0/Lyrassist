@@ -39,12 +39,18 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+// Custom CSS classes for background and text color
+const appStyles = {
+  backgroundImage: 'linear-gradient(to bottom right, #f97171, #a66dff)',
+  color: 'white', // Change to your desired text color
+};
+
 // !MUST EDIT TO CONTAIN WHAT WE NEED.
 function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="flex-column justify-flex-start min-100-vh">
+        <div className="flex-column justify-flex-start min-100-vh" style={appStyles}>
           <Header />
           <div className="container">
             <Routes>
@@ -66,7 +72,7 @@ function App() {
               />
             </Routes>
           </div>
-          <Footer />
+          <Footer/>
         </div>
       </Router>
     </ApolloProvider>
