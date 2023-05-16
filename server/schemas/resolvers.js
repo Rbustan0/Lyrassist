@@ -2,6 +2,9 @@ const { AuthenticationError } = require('apollo-server-express');
 const { Profile, Lyric } = require('../models');
 const { signToken } = require('../utils/auth');
 
+require('dotenv').config();
+const apiKey = process.env.API_KEY;
+
 // import fetch from 'node-fetch';
 
 const fetch = require('node-fetch');
@@ -150,32 +153,38 @@ const resolvers = {
           elements.push('bridge');
         }
 
-        const elementsString = elements.join('-');
-   
+        const elementsString = elements.join('-');  
 
 
         inputText = `prompt: Topic: ${prompt}\n Genre: ${genre}\n Song Structure Elements: ${elementsString}\nLyrics: `;
+
+        const messages = [
+          { role: 'user', content: `prompt: Topic: ${prompt}` },
+          { role: 'user', content: `Genre: ${genre}` },
+          { role: 'user', content: `Song Structure Elements: ${elementsString}` },
+          { role: 'user', content: 'Lyrics:' }
+        ];
       
 
       // Make a request to the OpenAI API using node-fetch
-        const response = await fetch('https://api.openai.com/v1/completions', {
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            "Authorization": "Bearer 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",
+            "Authorization": `Bearer ${apiKey}`,
             // Include any necessary headers for authentication or other requirements
           },
           body: JSON.stringify({
             model: 'gpt-3.5-turbo',
-            prompt: inputText, // THIS IS WHERE PROMPT WILL GO
-            max_tokens: 100,
+            messages: messages, // THIS IS WHERE PROMPT WILL GO
+            max_tokens: 1000,
             temperature: .6, })
         })
         const responseData = await response.json();
-
         console.log(responseData)
+        console.log(responseData.choices[0].message.content)
 
-        newLyric = responseData.generated_lyrics;
+        newLyric = responseData.choices[0].message.content;
         // Process the response and extract the generated lyrics
         let {_id} = context.profile
         if(_id){
