@@ -1,4 +1,5 @@
 import React from 'react';
+import LyricForm from '../components/LyricForm';
 
 
 const Home = () => {
@@ -15,7 +16,7 @@ const Home = () => {
             <div className="p-4">
               <h2 className="text-center">Submit Your Lyrics</h2>
               <form>
-                <div className="mb-3">
+                {/* <div className="mb-3">
                   <label htmlFor="checkboxes">Choose Elements:</label>
                   <div className="form-check">
                     <input className="form-check-input" type="checkbox" value="" id="verse" />
@@ -40,7 +41,8 @@ const Home = () => {
                   <label htmlFor="prompt">Prompt:</label>
                   <input type="text" className="form-control" id="prompt" placeholder="Enter your prompt" />
                 </div>
-                <button type="submit" className="btn btn-primary">Generate Lyrics</button>
+                <button type="submit" className="btn btn-primary">Generate Lyrics</button> */}
+                < LyricForm />
               </form>
             </div>
           </div>
