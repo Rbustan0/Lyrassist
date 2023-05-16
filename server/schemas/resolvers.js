@@ -165,7 +165,7 @@ const resolvers = {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            "Authorization": `Bearer ${apiKey}`,
+            "Authorization": `Bearer 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`,
             // Include any necessary headers for authentication or other requirements
           },
           body: JSON.stringify({
