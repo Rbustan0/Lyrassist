@@ -17,9 +17,9 @@ const resolvers = {
     //   return User.find().populate('lyrics');
     // },
 
-    // profile: async (parent, { profileId }) => {
-    //   return Profile.findOne({ _id: profileId }).populate('lyrics');
-    // },
+    profile: async (parent, { profileId }) => {
+      return Profile.findOne({ _id: profileId }).populate('lyrics');
+    },
     me: async (parent, args, context) => {
       if (context.profile) {
         return Profile.findOne({ _id: context.profile._id }).populate('lyrics');
