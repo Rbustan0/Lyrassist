@@ -9,12 +9,9 @@ const Header = () => {
     Auth.logout();
   };
 
-  const styleboi = {
-    backgroundImage: 'linear-gradient(to right, #4287f5, #ff69b4)'
-  }
 
   return (
-    <header className="mb-4 py-3 display-flex align-center">
+    <header className="mb-4 py-3 display-flex align-center bg-white">
       <div className="container flex-column justify-space-between-lg justify-center align-center text-center">
         <Link to="/" >
           <h1 className="m-0 coolheader" style={{
@@ -22,27 +19,55 @@ const Header = () => {
             Lyrassist
           </h1>
         </Link>
-        <p className="m-0" style={{ fontSize: '1.75rem', fontWeight: '700' }}>
+        <p className="m-0 subheader">
           Write lyrics based on what you're thinking.
         </p>
         <div>
           {Auth.loggedIn() ? (
             <>
-              <Link to={`/profile/${Auth.getProfile().data._id}`} className="btn btn-lg btn-light m-2" >
+              <Link
+                to={`/profile/${Auth.getProfile().data._id}`}
+                className="btn btn-lg btn-light m-2"
+                style={{
+                  backgroundColor: '#cf23cf',
+                  color: 'white',
+                }}
+              >
                 Profile
               </Link>
-              <button className="btn btn-lg btn-light m-2" onClick={logout}>
+              <button
+                className="btn btn-lg btn-light m-2"
+                onClick={logout}
+                style={{
+                  backgroundColor: '#cf23cf',
+                  color: 'white',
+                }}
+              >
                 Logout
               </button>
             </>
           ) : (
             <>
-              <Link className="btn btn-lg btn-primary m-2" to="/login">
-                Login
-              </Link>
-              <Link className="btn btn-lg btn-light m-2" to="/signup">
-                Signup
-              </Link>
+                <Link
+                  className="btn btn-lg btn-primary m-2"
+                  to="/login"
+                  style={{
+                    backgroundColor: '#cf23cf',
+                    color: 'white',
+                  }}
+                >
+                  Login
+                </Link>
+                <Link
+                  className="btn btn-lg btn-light m-2"
+                  to="/signup"
+                  style={{
+                    backgroundColor: '#cf23cf',
+                    color: 'white',
+                  }}
+                >
+                  Signup
+                </Link>
             </>
           )}
         </div>

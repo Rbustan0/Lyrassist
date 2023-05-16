@@ -5,3 +5,9 @@
     -webkit-background-clip: text;
     background-clip: text;
 }
+
+.subheader {
+    font-size: '1.75rem'; 
+    font-weight: '700';
+    color: rgb(90, 3, 90);
+}
