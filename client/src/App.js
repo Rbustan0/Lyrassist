@@ -61,7 +61,7 @@ function App() {
                 element={<Signup />} 
               />
               <Route 
-                path="/profiles/:profileId" 
+                path="/profile/:profileId" 
                 element={<Profile />} 
               />
             </Routes>

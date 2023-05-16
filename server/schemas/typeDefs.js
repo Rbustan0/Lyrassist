@@ -6,9 +6,7 @@ const typeDefs = gql`
     name: String
     email: String
     password: String
-
     lyrics: [Lyric]!
-
   }
 
   type Auth {
@@ -29,7 +27,7 @@ const typeDefs = gql`
 
   type Query {
     #profiles: [Profile]!
-    #profile(profileId: ID!): Profile
+    profile(profileId: ID!): Profile
     lyric(lyricId: ID!): Lyric
     me: Profile
   }
