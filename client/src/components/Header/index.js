@@ -8,6 +8,7 @@ const Header = () => {
     event.preventDefault();
     Auth.logout();
   };
+
   return (
     <header className="bg-info text-dark mb-4 py-3 display-flex align-center">
       <div className="container flex-column justify-space-between-lg justify-center align-center text-center">
@@ -21,9 +22,14 @@ const Header = () => {
         </p>
         <div>
           {Auth.loggedIn() ? (
-            <button className="btn btn-lg btn-light m-2" onClick={logout}>
-              Logout
-            </button>
+            <>
+              <Link to ={`/profiles/${Auth.getProfile().data._id}`} className="btn btn-lg btn-light m-2" >
+                Profile
+              </Link>
+              <button className="btn btn-lg btn-light m-2" onClick={logout}>
+                Logout
+              </button>
+            </>
           ) : (
             <>
               <Link className="btn btn-lg btn-primary m-2" to="/login">
@@ -36,14 +42,8 @@ const Header = () => {
           )}
         </div>
       </div>
-    <h1>
-    <button className="btn btn-lg btn-light m-2">
-              Submit
-            </button>
-    </h1>
     </header>
-      
-      );
+  );
 };
 
 export default Header;
