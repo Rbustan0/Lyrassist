@@ -2,7 +2,7 @@ import React from 'react';
 import { useMutation } from '@apollo/client';
 import { GEN_LYRIC } from '../utils/mutations';
 
-import LyricForm from '../components/ProfileList';
+// import LyricForm from '../components/ProfileList';
 
 const Home = () => {
   const { loading, data } = useMutation(GEN_LYRIC);
@@ -15,10 +15,11 @@ const Home = () => {
           {loading ? (
             <div>Loading...</div>
           ) : (
-            <LyricForm
-              lyric={lyric}
-              title="Make a Song!"
-            />
+            "data will go here"
+            // <LyricForm
+            //   lyric={lyric}
+            //   title="Make a Song!"
+            // />
           )}
         </div>
       </div>
