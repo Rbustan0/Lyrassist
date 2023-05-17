@@ -88,7 +88,6 @@ const LyricForm = ({ lyricId }) => {
               <label htmlFor="genre"> Choose a genre: &nbsp;&nbsp;</label>
 
               <select id="genre" name="genre" onChange={handleChange}>
-                <option value="genre">Select a Genre</option>
                 <option value="pop">Pop</option>
                 <option value="Hip Hop">Hip Hop</option>
                 <option value="edm">EDM</option>
@@ -136,7 +135,7 @@ const LyricForm = ({ lyricId }) => {
   ) : (
     <p>
       You need to be logged in to generate lyrics. Please{' '}
-      <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
+            <Link to="/login" style={{ color: 'cyan' }}>login</Link> or <Link to="/signup" style={{ color: 'cyan' }} >signup.</Link>
     </p>
   )
 }
