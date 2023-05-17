@@ -3,7 +3,9 @@ import React, { useState } from "react";
 import { useSpring, animated } from "react-spring";
 import Button from "./Button";
 
-function Card({ imagen }) {
+
+
+function Card({ text, id }) {
   const [show, setShown] = useState(false);
 
   const props3 = useSpring({
@@ -19,16 +21,14 @@ function Card({ imagen }) {
       onMouseEnter={() => setShown(true)}
       onMouseLeave={() => setShown(false)}
     >
-      <img src={imagen} alt="" />
+      
       <h2>Title</h2>
       <p>
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-        nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-        volutpat.
+        {text}
       </p>
       <div className={Styles.btnn}>
-        <Button text="Demo" />
-        <Button text="Code" />
+        <Button text="Edit" />
+        <Button text="Delete" />
       </div>
     </animated.div>
   );
