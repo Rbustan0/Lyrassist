@@ -95,25 +95,25 @@ const LyricForm = ({ lyricId }) => {
             <div className="mb-3">
               <label htmlFor="checkboxes">Structure your lyrics:</label>
               <div className="form-check">
-                <input className="form-check-input" type="checkbox" id="verse" name="verse" value={verse} onChange={handleChange} />
+                <input className="form-check-input" type="checkbox" id="verse" name="verse" value="verse" onChange={handleChange} />
                 <label className="form-check-label" htmlFor="verse">
                   Verse
                 </label>
               </div>
               <div className="form-check">
-                <input className="form-check-input" type="checkbox" id="prechorus" name="prechorus" value={preChorus} onChange={handleChange} />
+                <input className="form-check-input" type="checkbox" id="prechorus" name="prechorus" value="prechorus" onChange={handleChange} />
                 <label className="form-check-label" htmlFor="prechorus">
                   Pre-Chorus
                 </label>
               </div>
               <div className="form-check">
-                <input className="form-check-input" type="checkbox" id="chorus" name="chorus" value={chorus} onChange={handleChange} />
+                <input className="form-check-input" type="checkbox" id="chorus" name="chorus" value="chorus" onChange={handleChange} />
                 <label className="form-check-label" htmlFor="chorus">
                   Chorus
                 </label>
               </div>
               <div className="form-check">
-                <input className="form-check-input" type="checkbox" id="bridge" name="bridge" value={bridge} onChange={handleChange} />
+                <input className="form-check-input" type="checkbox" id="bridge" name="bridge" value="bridge" onChange={handleChange} />
                 <label className="form-check-label" htmlFor="bridge">
                   Bridge
                 </label>
