@@ -13,15 +13,17 @@ const LyricForm = ({ lyricId }) => {
   const [preChorus, setPreChorus] = useState(false);
   const [chorus, setChorus] = useState(false);
   const [bridge, setBridge] = useState(false);
-  const [genre, setGenre] = useState(false);
+  const [genre, setGenre] = useState(null);
 
-  console.log(prompt, verse, preChorus, chorus, bridge, genre);
+  // console.log(prompt, verse, preChorus, chorus, bridge, genre);
 
   const [genLyric] = useMutation(GEN_LYRIC);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
+    if( genre === null) {
+      return console.log("You must select a genre!");
+    }
     try {
       const { data } = await genLyric({
         variables: {
@@ -35,6 +37,8 @@ const LyricForm = ({ lyricId }) => {
         },
       });
       setPromptText('');
+      setGenre(genre);
+      console.log("Success! Your Lyrics are generating!")
     } catch (err) {
       console.log(err);
     }
@@ -45,30 +49,28 @@ const LyricForm = ({ lyricId }) => {
 
     if (name === 'prompt' && value.length <= 280) {
       setPromptText(value);
-      //   setCharacterCount(value.length);
     };
 
     if (name === 'verse' && value === "verse") {
       setVerse(true);
-      //   setCharacterCount(value.length);
     };
 
     if (name === 'prechorus' && value === "prechorus") {
       setPreChorus(true);
-      //   setCharacterCount(value.length);
-    }
+    };
     if (name === 'chorus' && value === "chorus") {
       setChorus(true);
-      //   setCharacterCount(value.length);
-    }
+    };
     if (name === 'bridge' && value === "bridge") {
       setBridge(true);
-      //   setCharacterCount(value.length);
-    }
-    if (name === 'genre') {
+    };
+    if (name === 'genre' && value !== "genre") {
       setGenre(value);
-    }
-  };
+    };
+    if (name === 'genre' && value === "genre") {
+      setGenre(null);
+    };
+  }
 
   return (
     <div>
@@ -81,8 +83,9 @@ const LyricForm = ({ lyricId }) => {
               <input type="text" className="form-control" id="prompt" name="prompt" value={prompt} onChange={handleChange} placeholder="Enter your prompt" />
             </div>
             <div>
-              <label for="genre"> Choose a genre:</label>
+              <label htmlFor="genre"> Choose a genre:</label>
               <select id="genre" name="genre" onChange={handleChange}>
+                <option value="genre">Select a Genre</option>
                 <option value="pop">Pop</option>
                 <option value="Hip Hop">Hip Hop</option>
                 <option value="edm">EDM</option>
