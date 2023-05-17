@@ -14,8 +14,8 @@ const Home = () => {
               Lyrassist is an innovative platform that empowers songwriters and musicians to create captivating lyrics effortlessly. With our AI-powered lyric generator, you can unleash your creativity and explore endless possibilities. Whether you're seeking inspiration or looking to overcome writer's block, Lyrassist is your go-to tool for crafting unique and meaningful lyrics. Get started today and let your musical journey begin!
             </p>
             <div className="p-4">
-              <h2 className="text-center">Submit Your Lyrics</h2>
-              <form>
+              <h2 className="text-center">Generate Your Lyrics</h2>
+              
                 {/* <div className="mb-3">
                   <label htmlFor="checkboxes">Choose Elements:</label>
                   <div className="form-check">
@@ -43,7 +43,7 @@ const Home = () => {
                 </div>
                 <button type="submit" className="btn btn-primary">Generate Lyrics</button> */}
                 < LyricForm />
-              </form>
+              
             </div>
           </div>
         </div>
