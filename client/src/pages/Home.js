@@ -15,34 +15,7 @@ const Home = () => {
             </p>
             <div className="p-4">
               <h2 className="text-center">Generate Your Lyrics</h2>
-              
-                {/* <div className="mb-3">
-                  <label htmlFor="checkboxes">Choose Elements:</label>
-                  <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="" id="verse" />
-                    <label className="form-check-label" htmlFor="verse">
-                      Verse
-                    </label>
-                  </div>
-                  <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="" id="chorus" />
-                    <label className="form-check-label" htmlFor="chorus">
-                      Chorus
-                    </label>
-                  </div>
-                  <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="" id="bridge" />
-                    <label className="form-check-label" htmlFor="bridge">
-                      Bridge
-                    </label>
-                  </div>
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="prompt">Prompt:</label>
-                  <input type="text" className="form-control" id="prompt" placeholder="Enter your prompt" />
-                </div>
-                <button type="submit" className="btn btn-primary">Generate Lyrics</button> */}
-                < LyricForm />
+              < LyricForm className="flex-row justify-center justify-space-between-md align-center" />
               
             </div>
           </div>
