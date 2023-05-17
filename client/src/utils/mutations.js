@@ -50,4 +50,12 @@ export const GEN_LYRIC = gql`
 }
 `;
 
+export const REMOVE_LYRIC = gql `
+  mutation Mutation($lyricId: ID!) {
+  removeLyric(lyricId: $lyricId) {
+    _id
+  }
+}
+`;
+
 

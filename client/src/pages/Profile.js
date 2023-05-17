@@ -19,7 +19,7 @@ const Profile = () => {
   });
 
   const profile = data?.me || {};
-
+  console.log(profile)
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -30,7 +30,7 @@ const Profile = () => {
       </h2>
       <div className="card-body">
           <LyricCarousel
-            // thoughts={user.thoughts}
+            lyrics={profile.lyrics}
             // title={`${user.username}'s thoughts...`}
             // showTitle={false}
             // showUsername={false}
