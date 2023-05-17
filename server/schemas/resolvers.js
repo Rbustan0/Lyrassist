@@ -159,7 +159,6 @@ const resolvers = {
           { role: 'user', content: `Song Structure Elements: ${elementsString}` },
           { role: 'user', content: 'Lyrics:' }
         ];
-
       // Make a request to the OpenAI API using node-fetch
         const response = await fetch('https://api.openai.com/v1/chat/completions', {
           method: 'POST',
