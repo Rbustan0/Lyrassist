@@ -74,6 +74,7 @@ const LyricForm = ({ lyricId }) => {
     <div>
       {Auth.loggedIn() ? (
 
+        
         <div>
           <form className="flex-row justify-center justify-space-between-md align-center" onSubmit={handleFormSubmit}>
             <div className="mb-3">
