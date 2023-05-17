@@ -26,7 +26,7 @@ const Profile = () => {
   return (
     <div>
       <h2 className="card-header">
-        {profile.name}'s friends have endorsed these skills...
+        Here are your songs {profile.name} 
       </h2>
       <div className="card-body">
           <LyricCarousel

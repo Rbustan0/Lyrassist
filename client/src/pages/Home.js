@@ -15,7 +15,7 @@ const Home = () => {
             </p>
             <div className="p-4">
               <h2 className="text-center">Generate Your Lyrics</h2>
-              < LyricForm className="flex-row justify-center justify-space-between-md align-center" />
+              < LyricForm  />
               
             </div>
           </div>

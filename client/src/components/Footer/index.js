@@ -9,13 +9,14 @@ const Footer = () => {
       <div className="container text-center mb-5">
         {location.pathname !== '/' && (
           <button
-            className="btn btn-dark mb-3"
+            className="btn btn-primary mb-3"
+            style={{ backgroundColor: '#cf23cf', borderColor: '#cf23cf' }}
             onClick={() => navigate(-1)}
           >
             &larr; Go Back
           </button>
         )}
-        <h4>&copy; {new Date().getFullYear()} - Lyrassist</h4>
+        <h4 className='text-white'>&copy; {new Date().getFullYear()} - Lyrassist</h4>
       </div>
     </footer>
   );

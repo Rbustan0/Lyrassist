@@ -44,7 +44,7 @@ const Login = (props) => {
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
         <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Login</h4>
+          <h4 className="card-header text-light p-2" style={{ backgroundColor: '#7548b8', borderColor: '#7548b8' }}>Login</h4>
           <div className="card-body">
             {data ? (
               <p>
@@ -70,8 +70,8 @@ const Login = (props) => {
                   onChange={handleChange}
                 />
                 <button
-                  className="btn btn-block btn-info"
-                  style={{ cursor: 'pointer' }}
+                  className="btn btn-block btn-info text-white"
+                    style={{ cursor: 'pointer', backgroundColor: '#7548b8', borderColor: '#7548b8' }}
                   type="submit"
                 >
                   Submit
