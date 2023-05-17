@@ -33,3 +33,9 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.delete-lyric {
+    
+    background-color: #ff0000 !important;
+    width: 100px;
+}
