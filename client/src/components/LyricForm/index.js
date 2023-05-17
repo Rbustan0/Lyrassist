@@ -76,14 +76,17 @@ const LyricForm = ({ lyricId }) => {
     <div>
       {Auth.loggedIn() ? (
 
+        
         <div>
-          <form className="flex-row justify-center justify-space-between-md align-center" onSubmit={handleFormSubmit}>
+          <form onSubmit={handleFormSubmit}>
             <div className="mb-3">
               <label htmlFor="prompt">Prompt:</label>
               <input type="text" className="form-control" id="prompt" name="prompt" value={prompt} onChange={handleChange} placeholder="Enter your prompt" />
             </div>
-            <div>
-              <label htmlFor="genre"> Choose a genre:</label>
+
+            <div className='mb-3'>
+              <label htmlFor="genre"> Choose a genre: &nbsp;&nbsp;</label>
+
               <select id="genre" name="genre" onChange={handleChange}>
                 <option value="genre">Select a Genre</option>
                 <option value="pop">Pop</option>
@@ -121,9 +124,11 @@ const LyricForm = ({ lyricId }) => {
                 </label>
               </div>
             </div>
-            <button type="submit" className="btn btn-primary">
+            <div className='d-flex justify-content-center'>
+              <button type="submit" className="btn btn-primary" style={{ backgroundColor: '#cf23cf', borderColor: '#cf23cf' }}>
               Generate Lyrics
             </button>
+            </div>
           </form>
         </div>
 
@@ -140,47 +145,4 @@ const LyricForm = ({ lyricId }) => {
 };
 
 export default LyricForm;
-
-
-{// <>
-  //   <form
-  //     className="flex-row justify-center justify-space-between-md align-center"
-  //     onSubmit={handleFormSubmit}
-  //   >
-  //     <div className="col-12 col-lg-9">
-  //       <textarea
-  //         name="prompt"
-  //         placeholder="Enter your prompt..."
-  //         value={prompt}
-  //         className="form-input w-100"
-  //         style={{ lineHeight: '1.5', resize: 'vertical' }}
-  //         onChange={handleChange}
-  //       ></textarea>
-  //     </div>
-  //     <div>
-  //         <input id="verse" name="verse" type="checkbox" value="verse" onChange={handleChange}></input>
-  //         <label for="verse">I want a verse</label>
-  //         <input id="prechorus" name="prechorus" type="checkbox" value="prechorus" onChange={handleChange}></input>
-  //         <label for="prechorus">I want a prechorus</label>
-  //         <input id="chorus" name="chorus" type="checkbox" value="chorus" onChange={handleChange}></input>
-  //         <label for="chorus">I want a chorus</label>
-  //         <input id="bridge" name="bridge" type="checkbox" value="bridge" onChange={handleChange}></input>
-  //         <label for="bridge">I want a bridge</label>
-  //     </div>
-  //     <div>
-  //         <label for="genre"> Choose a genre:</label>
-  //         <select id="genre" name="genre" onChange={handleChange}>
-  //             <option value="pop">Pop</option>
-  //             <option value="rap">Rap</option>
-  //             <option value="edm">EDM</option>
-  //         </select>
-  //     </div>
-  //     <div className="col-12 col-lg-3">
-  //       <button className="btn btn-primary btn-block py-3" type="submit">
-  //         Generate Lyric
-  //       </button>
-  //     </div>
-  //   </form>
-  // </>
-}
 
