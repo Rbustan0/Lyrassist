@@ -37,6 +37,8 @@ const LyricForm = ({ lyricId }) => {
         },
       });
       setPromptText('');
+      setGenre(genre);
+      console.log("Success! Your Lyrics are generating!")
     } catch (err) {
       console.log(err);
     }
