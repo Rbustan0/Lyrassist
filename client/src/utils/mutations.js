@@ -36,16 +36,10 @@ export const LOGIN_USER = gql`
 
 // ! ADD LYRIC
 export const GEN_LYRIC = gql`
- mutation Mutation( $verse: Boolean, $bridge: Boolean, $chorus: Boolean, $prompt: String, $genre: String) {
-  addLyric( verse: $verse, bridge: $bridge, chorus: $chorus, prompt: $prompt, genre: String) {
-    verse
-    prompt
-    preChorus
-    lyricText
-    chorus
-    bridge
+ mutation Mutation($verse: Boolean, $bridge: Boolean, $chorus: Boolean, $preChorus: Boolean, $prompt: String!, $genre: String) {
+  genLyric(verse: $verse, bridge: $bridge, chorus: $chorus, preChorus: $preChorus, prompt: $prompt, genre: $genre) {
     _id
-    genre
+    lyricText
   }
 }
 `;
