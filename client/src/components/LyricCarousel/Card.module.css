@@ -8,6 +8,7 @@
     height: fit-content;
     padding: 0 2rem 2rem 2rem;
     border-radius: 10px;
+    overflow: hidden;
 }
 
 .card img {

@@ -14,7 +14,7 @@ function LyricCarousel({lyrics}) {
                     key: uuidv4(),
                     text: lyric.lyricText,
                     content: (
-                        <Card text={lyric.lyricText} />
+                        <Card text={lyric.lyricText} id={lyric._id}/>
                     )
             }
         })

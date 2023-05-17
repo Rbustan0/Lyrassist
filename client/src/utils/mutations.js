@@ -58,4 +58,13 @@ export const REMOVE_LYRIC = gql `
 }
 `;
 
+export const EDIT_LYRIC = gql `
+  mutation EditLyric($id: ID!, $lyricText: String!) {
+  editLyric(_id: $id, lyricText: $lyricText) {
+    _id
+    lyricText
+  }
+}
+`;
+
 
