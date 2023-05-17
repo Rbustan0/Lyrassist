@@ -44,4 +44,21 @@ export const GEN_LYRIC = gql`
 }
 `;
 
+export const REMOVE_LYRIC = gql `
+  mutation Mutation($lyricId: ID!) {
+  removeLyric(lyricId: $lyricId) {
+    _id
+  }
+}
+`;
+
+export const EDIT_LYRIC = gql `
+  mutation EditLyric($id: ID!, $lyricText: String!) {
+  editLyric(_id: $id, lyricText: $lyricText) {
+    _id
+    lyricText
+  }
+}
+`;
+
 
