@@ -1,3 +1,4 @@
+import Styles from "./Modal.module.css";
 import React, { useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 import { useMutation } from "@apollo/client";
@@ -38,7 +39,8 @@ function EditModal({ lyrics: { text, id } }) {
           <Form.Group>
             <Form.Label>Text Field</Form.Label>
             <Form.Control
-              type="text"
+              type="textarea"
+              className={Styles.modal}
               value={textFieldValue}
               onChange={(e) => setTextFieldValue(e.target.value)}
             />
