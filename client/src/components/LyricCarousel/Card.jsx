@@ -7,7 +7,7 @@ import { useMutation } from "@apollo/client";
 import { REMOVE_LYRIC } from "../../utils/mutations";
 import Styles1 from "./Button.module.css";
 
-function Card({ text, id }) {
+function Card({ text, id, title }) {
     const [show, setShow] = useState(false);
     const [removeLyric] = useMutation(REMOVE_LYRIC);
 
@@ -36,7 +36,7 @@ function Card({ text, id }) {
             onMouseEnter={() => setShow(true)}
             onMouseLeave={() => setShow(false)}
         >
-            <h2>Title</h2>
+            <h2>{title}</h2>
             <p>{text}</p>
             <div className={Styles.btnn}>
                 {/* <Button text="Edit" onClick={() => setShow(true)} /> */}
