@@ -88,6 +88,7 @@ const LyricForm = ({ lyricId }) => {
               <label htmlFor="genre"> Choose a genre: &nbsp;&nbsp;</label>
 
               <select id="genre" name="genre" onChange={handleChange}>
+                <option value="genre">Genre</option>
                 <option value="pop">Pop</option>
                 <option value="Hip Hop">Hip Hop</option>
                 <option value="edm">EDM</option>
