@@ -1,5 +1,16 @@
 .modal {
     height: 500px;
     width: 400px;
-    background-color: #ff0000;
+    background-color: white;
+    overflow: scroll;
 }
+
+/* .M {
+    width: 600px;
+    height: 500px;
+    overflow: visible;
+} */
+/* 
+.carousel {
+    margin-top: 100px;
+} */

@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-
+import { useQuery } from '@apollo/client';
+import {ME} from '../../utils/queries'
 import { GEN_LYRIC } from '../../utils/mutations';
+import { useNavigate } from "react-router-dom";
+import Profile from "../../pages/Profile";
 
 import Auth from '../../utils/auth';
+
+
+
 
 const LyricForm = ({ lyricId }) => {
   const [prompt, setPromptText] = useState('');
@@ -14,17 +20,30 @@ const LyricForm = ({ lyricId }) => {
   const [chorus, setChorus] = useState(false);
   const [bridge, setBridge] = useState(false);
   const [genre, setGenre] = useState(null);
-
+  // const {id} = useQUery(ME, {
+  //   variabes: {_}
+  // })
+  // const [setMe] = useQuery(ME);
+  // const profileIdGenerate= async() => { 
+  //   const token = await setMe;
+  //    const Id = token.data.me._id;
+  //    return Id;
+  // }
+  // const profileId = profileIdGenerate();
+  const navigate = useNavigate();
   // console.log(prompt, verse, preChorus, chorus, bridge, genre);
 
   const [genLyric] = useMutation(GEN_LYRIC);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    const btn = document.getElementById('subButton');
     if( genre === null) {
+      btn.innerHTML = "Select a Genre and submit again";
       return console.log("You must select a genre!");
     }
     try {
+      btn.innerHTML = "Generating Lyrics...";
       const { data } = await genLyric({
         variables: {
           verse,
@@ -38,6 +57,8 @@ const LyricForm = ({ lyricId }) => {
       });
       setPromptText('');
       setGenre(genre);
+      navigate(`/profile/${Auth.getProfile().data._id}`, {replace: true});
+      Profile();
       console.log("Success! Your Lyrics are generating!")
     } catch (err) {
       console.log(err);
@@ -125,7 +146,7 @@ const LyricForm = ({ lyricId }) => {
               </div>
             </div>
             <div className='d-flex justify-content-center'>
-              <button type="submit" className="btn btn-primary" style={{ backgroundColor: '#cf23cf', borderColor: '#cf23cf' }}>
+              <button id="subButton" type="submit" className="btn btn-primary" style={{ backgroundColor: '#cf23cf', borderColor: '#cf23cf' }}>
               Generate Lyrics
             </button>
             </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import EditModal from '../components/LyricCarousel/Modal';
 
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
@@ -25,10 +26,11 @@ const Profile = () => {
   }
   return (
     <div>
-      <h2 className="card-header">
+      <h2 className="card-header, text-center">
         Here are your songs {profile.name} 
       </h2>
-      <div className="card-body">
+      <br></br>
+      <div className="card-body"> 
           <LyricCarousel
             lyrics={profile.lyrics}
             // title={`${user.username}'s thoughts...`}
