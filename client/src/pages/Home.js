@@ -1,5 +1,7 @@
 import React from 'react';
 import LyricForm from '../components/LyricForm';
+import { useQuery } from '@apollo/client';
+import {ME} from '../utils/queries'
 
 
 const Home = () => {

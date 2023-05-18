@@ -1,3 +1,4 @@
+import Styles from "./Modal.module.css";
 import Carousel from "react-spring-3d-carousel";
 import { useState, useEffect } from "react";
 import { config } from "react-spring";
@@ -19,7 +20,7 @@ export default function Carroussel(props) {
 
   return (
     <div
-      style={{ width: props.width, height: props.height, margin: props.margin }}
+      style={{ width: props.width, height: props.height, margin: props.margin}}
     >
       <Carousel
         slides={cards}

@@ -5,9 +5,11 @@ import React, {useState, useEffect} from 'react';
 
 import Carousel from "./Carousel";
 
+
 function LyricCarousel({lyrics}) {
     const [cards, setCards] = useState([]);
-
+    const newCards = '';
+    // const [lyricContent, setLyricContent] = useState(lyric.lyricText);
     useEffect(() => {
         const tempLyrics = lyrics.map((lyric) => {
             return {
@@ -18,7 +20,8 @@ function LyricCarousel({lyrics}) {
                     )
             }
         })
-        setCards(tempLyrics);
+        console.log(tempLyrics);
+        setCards(tempLyrics.reverse());
     }, [])
 
     useEffect(() => {
@@ -33,9 +36,9 @@ function LyricCarousel({lyrics}) {
             <Carousel
                 cards={cards}
                 height="500px"
-                width="30%"
+                width="50%"
                 margin="0 auto"
-                offset={2}
+                offset={3}
                 showArrows={false}
             />    
         ):(

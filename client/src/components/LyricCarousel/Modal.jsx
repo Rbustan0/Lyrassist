@@ -3,12 +3,17 @@ import React, { useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 import { useMutation } from "@apollo/client";
 import { EDIT_LYRIC } from "../../utils/mutations";
+import Styles1 from "./Button.module.css";
+import LyricCarousel from "./App";
+import Profile from "../../pages/Profile";
 
-function EditModal({ lyrics: { text, id } }) {
+
+const reload=()=>window.location.reload(false);
+
+function EditModal({ lyrics: { text, id, title } }) {
   const [showModal, setShowModal] = useState(false);
   const [textFieldValue, setTextFieldValue] = useState(text);
   const [editLyric] = useMutation(EDIT_LYRIC);
-
   const handleOpenModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
   const handleSubmit = async (id, text) => {
@@ -20,6 +25,7 @@ function EditModal({ lyrics: { text, id } }) {
         },
       });
       handleCloseModal();
+      reload();
     } catch (error) {
       console.error("Error editing lyric:", error);
     }
@@ -27,20 +33,19 @@ function EditModal({ lyrics: { text, id } }) {
 
   return (
     <>
-      <Button variant="primary" onClick={handleOpenModal}>
+      <Button variant="primary" className={Styles1.btn} onClick={handleOpenModal}  style={{ backgroundColor: '#cf23cf', borderColor: '#cf23cf' }}>
         Edit lyrics
       </Button>
 
-      <Modal show={showModal} onHide={handleCloseModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Edit Text Field</Modal.Title>
+      <Modal className={Styles.M} show={showModal} >
+        <Modal.Header closeButton onClick={handleCloseModal}>
+          <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form.Group>
-            <Form.Label>Text Field</Form.Label>
-            <Form.Control
-              type="textarea"
-              className={Styles.modal}
+            <Form.Label>Edit Text:</Form.Label>
+            <textarea
+              className={Styles.modal} 
               value={textFieldValue}
               onChange={(e) => setTextFieldValue(e.target.value)}
             />

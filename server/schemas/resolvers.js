@@ -1,3 +1,4 @@
+
 const { AuthenticationError } = require('apollo-server-express');
 const { Profile, Lyric } = require('../models');
 const { signToken } = require('../utils/auth');
