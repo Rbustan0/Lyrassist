@@ -43,7 +43,7 @@ function EditModal({ lyrics: { text, id, title } }) {
         </Modal.Header>
         <Modal.Body>
           <Form.Group>
-            <Form.Label>Edit Text:</Form.Label>
+            {/* <Form.Label>Edit Text:</Form.Label> */}
             <textarea
               className={Styles.modal} 
               value={textFieldValue}
