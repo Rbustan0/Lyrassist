@@ -27,7 +27,7 @@ const Profile = () => {
   return (
     <div>
       <h2 className="card-header, text-center">
-        Here are your songs {profile.name} 
+        Here are your songs {profile.name.charAt(0).toUpperCase() + profile.name.slice(1)}: 
       </h2>
       <br></br>
       <div className="card-body"> 
